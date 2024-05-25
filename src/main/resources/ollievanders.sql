@@ -1,6 +1,100 @@
--- This file allow to write SQL commands that will be emitted in test and dev.
--- The commands are commented as their support depends of the database
--- insert into myentity (id, field) values(1, 'field-1');
--- insert into myentity (id, field) values(2, 'field-2');
--- insert into myentity (id, field) values(3, 'field-3');
--- alter sequence myentity_seq restart with 4;
+-- DROP DATABASE IF EXISTS is not supported in H2
+-- Use DROP SCHEMA instead
+DROP SCHEMA IF EXISTS GILDEDROSE_TEST CASCADE;
+CREATE SCHEMA IF NOT EXISTS GILDEDROSE_TEST;
+SET SCHEMA GILDEDROSE_TEST;
+
+-- Table ITEMS
+DROP TABLE IF EXISTS ITEMS;
+CREATE TABLE IF NOT EXISTS ITEMS
+(
+	ID INT AUTO_INCREMENT NOT NULL,
+	NAME_ITEM VARCHAR(50) NOT NULL,
+    SELLIN INT NOT NULL,
+    QUALITY INT NOT NULL,
+    PRIMARY KEY(ID)
+);
+
+-- Table NORMALITEMS
+DROP TABLE IF EXISTS NORMALITEMS;
+CREATE TABLE IF NOT EXISTS NORMALITEMS
+(
+	ITEM INT NOT NULL,
+    PRIMARY KEY(ITEM),
+    FOREIGN KEY (ITEM) REFERENCES ITEMS(ID)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Table SULFURAS
+DROP TABLE IF EXISTS SULFURAS;
+CREATE TABLE IF NOT EXISTS SULFURAS
+(
+	ITEM INT NOT NULL,
+    PRIMARY KEY(ITEM),
+    FOREIGN KEY (ITEM) REFERENCES ITEMS(ID)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Table CONJURED
+DROP TABLE IF EXISTS CONJURED;
+CREATE TABLE IF NOT EXISTS CONJURED
+(
+	ITEM INT NOT NULL,
+    PRIMARY KEY(ITEM),
+    FOREIGN KEY (ITEM) REFERENCES ITEMS(ID)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Table AGEDBRIE
+DROP TABLE IF EXISTS AGEDBRIE;
+CREATE TABLE IF NOT EXISTS AGEDBRIE
+(
+	ITEM INT NOT NULL,
+    PRIMARY KEY(ITEM),
+    FOREIGN KEY (ITEM) REFERENCES ITEMS(ID)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Table BACKSTAGEPASS
+DROP TABLE IF EXISTS BACKSTAGEPASS;
+CREATE TABLE IF NOT EXISTS BACKSTAGEPASS
+(
+	ITEM INT NOT NULL,
+    PRIMARY KEY(ITEM),
+    FOREIGN KEY (ITEM) REFERENCES ITEMS(ID)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Insert data into ITEMS
+INSERT INTO ITEMS
+(NAME_ITEM, QUALITY, SELLIN)
+VALUES
+('+5 Dexterity Vest', 10, 20),
+('Aged Brie', 2, 0),
+('Elixir of the Mongoose', 5, 7),
+('Sulfuras, Hand of Ragnaros', 80, 0),
+('Sulfuras, Hand of Ragnaros', 80, -1),
+('Backstage passes to a TAFKAL80ETC concert', 20, 15),
+('Backstage passes to a TAFKAL80ETC concert', 49, 10),
+('Backstage passes to a TAFKAL80ETC concert', 49, 6),
+('Conjured Mana Cake', 3, 6);
+
+-- Insert data into AGEDBRIE
+INSERT INTO AGEDBRIE (ITEM) VALUES (2);
+
+-- Insert data into BACKSTAGEPASS
+INSERT INTO BACKSTAGEPASS (ITEM) VALUES (6), (7), (8);
+
+-- Insert data into CONJURED
+INSERT INTO CONJURED (ITEM) VALUES (9);
+
+-- Insert data into NORMALITEMS
+INSERT INTO NORMALITEMS (ITEM) VALUES (1), (3);
+
+-- Insert data into SULFURAS
+INSERT INTO SULFURAS (ITEM) VALUES (4), (5);
