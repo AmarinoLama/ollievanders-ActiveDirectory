@@ -1,4 +1,9 @@
 package org.acme.repository;
 
-public class SulfurasRepository {
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import org.acme.domain.Sulfuras;
+
+@ApplicationScoped
+public class SulfurasRepository implements PanacheRepository<Sulfuras> {
 }
