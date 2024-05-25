@@ -1,6 +1,15 @@
 package org.acme.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "BAKSTAGE")
 public class Backstage extends Item {
+
+    @Id
+    @OneToOne
+    @JoinColumn(name="item")
+    private Item item;
 
     Backstage(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
