@@ -6,9 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "items")
 public abstract class Item implements Updateable {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    public int idItem = 0;
+    @Id
+    public long idItem = 0L;
 
     @Column (name = "NAME_ITEM")
     public String name = "";
@@ -25,10 +24,45 @@ public abstract class Item implements Updateable {
         this.quality = quality;
     }
 
+    protected Item() {
+    }
+
     @Override
     public String toString() {
         StringBuilder salida = new StringBuilder();
         salida.append(this.name).append(", ").append(this.sellIn).append(", ").append(this.quality);
         return salida.toString();
+    }
+
+    public long getIdItem() {
+        return idItem;
+    }
+
+    public void setIdItem(long idItem) {
+        this.idItem = idItem;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSellIn() {
+        return sellIn;
+    }
+
+    public void setSellIn(int sellIn) {
+        this.sellIn = sellIn;
+    }
+
+    public int getQuality() {
+        return quality;
+    }
+
+    public void setQuality(int quality) {
+        this.quality = quality;
     }
 }
