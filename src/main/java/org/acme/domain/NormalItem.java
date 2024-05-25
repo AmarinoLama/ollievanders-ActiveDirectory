@@ -1,6 +1,15 @@
 package org.acme.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "NORMALITEMS")
 public class NormalItem extends Item {
+
+    @Id
+    @OneToOne
+    @JoinColumn(name="item")
+    private Item item;
 
     NormalItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
