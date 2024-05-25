@@ -1,12 +1,19 @@
 package org.acme.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "items")
 public abstract class Item implements Updateable {
 
-    public String name;
+    public int idItem = 0;
 
-    public int sellIn;
+    public String name = "";
 
-    public int quality;
+    public int sellIn = 0;
+
+    public int quality = 0;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
