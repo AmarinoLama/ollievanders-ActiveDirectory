@@ -1,4 +1,5 @@
 package org.acme.domain;
 
-public class Updateable {
+public interface Updateable {
+    void updateItem();
 }
