@@ -1,10 +1,13 @@
 package org.acme.domain;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "t_items")
-public abstract class Item implements Updateable {
+public abstract class Item extends PanacheEntityBase implements Updateable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -29,6 +32,13 @@ public abstract class Item implements Updateable {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+    }
+
+    public Item(String name, int sellIn, int quality, String tipo) {
+        this.name = name;
+        this.sellIn = sellIn;
+        this.quality = quality;
+        this.tipo = tipo;
     }
 
     @Override
@@ -76,5 +86,16 @@ public abstract class Item implements Updateable {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public static List<Item> getAllItems() {
+        return Item.listAll();
+    }
+
+    public static List<Item> getItemByName(String nameItem) {
+        return Item.getAllItems()
+                .stream()
+                .filter(item -> item.getName().equals(nameItem))
+                .toList();
     }
 }
