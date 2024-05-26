@@ -2,8 +2,9 @@ package org.acme.domain;
 
 public class Conjured extends Item {
 
+    Conjured() {}
     Conjured(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+        super(name, sellIn, quality, "Conjured");
     }
 
     public void updateItem() {

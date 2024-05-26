@@ -2,8 +2,9 @@ package org.acme.domain;
 
 public class Backstage extends Item {
 
+    Backstage() {}
     Backstage(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+        super(name, sellIn, quality, "backstage pass");
     }
 
     public void updateItem() {
