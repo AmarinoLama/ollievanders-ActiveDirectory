@@ -1,10 +1,10 @@
 package org.acme.domain;
 
-public class Backstage extends Item {
+public class Backstage extends Item implements Updateable{
 
     Backstage() {}
     Backstage(String name, int sellIn, int quality) {
-        super(name, sellIn, quality, "backstage pass");
+        super(name, sellIn, quality, "Backstage Pass");
     }
 
     public void updateItem() {
@@ -12,34 +12,19 @@ public class Backstage extends Item {
         updateQuality();
     }
 
-    void updateQuality() {
-
-        if (sellIn >= 11) {
-            quality = quality + 1;
+    @Override
+    public void updateQuality() {
+        if(getSellIn()>10){
+            setQuality(getQuality()+1);
+        } else if (getSellIn()<=10 && getSellIn()>5) {
+            setQuality(getQuality()+2);
+        } else if (getSellIn()<=5 && getSellIn()>=0) {
+            setQuality(getQuality()+3);
+        } else if (getSellIn()<0) {
+            setQuality(0);
         }
-
-        if (sellIn <= 10 && sellIn >= 6) {
-            if (quality < 49) {
-                quality = quality + 2;
-            } else {
-                quality = 50;
-            }
+        if(getQuality()>50){
+            setQuality(50);
         }
-
-        if (sellIn <= 5) {
-            if (quality < 48) {
-                quality = quality + 3;
-            } else {
-                quality = 50;
-            }
-        }
-
-        if (sellIn <= 0) {
-            quality = 0;
-        }
-    }
-
-    void updateSellIn() {
-        sellIn = sellIn - 1;
     }
 }

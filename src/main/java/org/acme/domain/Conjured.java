@@ -1,6 +1,6 @@
 package org.acme.domain;
 
-public class Conjured extends Item {
+public class Conjured extends Item implements Updateable {
 
     Conjured() {}
     Conjured(String name, int sellIn, int quality) {
@@ -12,15 +12,17 @@ public class Conjured extends Item {
         updateQuality();
     }
 
-    void updateQuality() {
-        if (quality > 0 && sellIn >= 0) {
-            quality = quality - 2;
+    @Override
+    public void updateQuality() {
+        if(getSellIn() >= 0){
+            setQuality(getQuality() - 2);
         } else {
-            quality = quality - 4;
+            setQuality(getQuality() - 4);
         }
-    }
 
-    void updateSellIn() {
-        sellIn = sellIn - 1;
+        if(getQuality()<0){
+            setQuality(0);
+        }
+
     }
 }

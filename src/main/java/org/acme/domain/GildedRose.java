@@ -1,10 +1,7 @@
-package edu.badpals.domain;
-
-import org.acme.domain.Updateable;
+package org.acme.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class GildedRose {
     List<Updateable> items = new ArrayList<>();

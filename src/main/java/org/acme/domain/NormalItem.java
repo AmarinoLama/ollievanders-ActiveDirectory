@@ -1,6 +1,6 @@
 package org.acme.domain;
 
-public class NormalItem extends Item {
+public class NormalItem extends Item implements Updateable{
 
     NormalItem() {}
     NormalItem(String name, int sellIn, int quality) {
@@ -12,18 +12,18 @@ public class NormalItem extends Item {
         updateQuality();
     }
 
-    void updateQuality() {
-
-        if (sellIn >= 0) {
-            quality = quality - 1;
+    @Override
+    public void updateQuality() {
+        if(getSellIn() >= 0){
+            setQuality(getQuality() - 1);
         } else {
-            quality = quality - 2;
+            setQuality(getQuality() - 2);
         }
 
-    }
+        if(getQuality()<0){
+            setQuality(0);
+        }
 
-    void updateSellIn() {
-        sellIn = sellIn - 1;
     }
 }
 

@@ -1,6 +1,6 @@
 package org.acme.domain;
 
-public class AgedBrie extends Item {
+public class AgedBrie extends Item implements Updateable {
 
     AgedBrie() {}
     AgedBrie(String name, int sellIn, int quality) {
@@ -12,15 +12,15 @@ public class AgedBrie extends Item {
         updateQuality();
     }
 
-    void updateQuality() {
-        if (sellIn >= 0) {
-            quality = quality + 1;
-        } else {
-            quality = quality + 2;
+    @Override
+    public void updateQuality() {
+        if(getSellIn()>=0){
+            setQuality(getQuality()+1);
+        }else{
+            setQuality(getQuality()+2);
         }
-    }
-
-    void updateSellIn() {
-        sellIn = sellIn - 1;
+        if(getQuality()>50){
+            setQuality(50);
+        }
     }
 }
