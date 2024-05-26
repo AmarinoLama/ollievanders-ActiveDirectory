@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_items")
-public abstract class Item extends PanacheEntityBase implements Updateable {
+public class Item extends PanacheEntityBase {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
