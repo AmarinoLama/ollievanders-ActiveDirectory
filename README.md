@@ -1,3 +1,9 @@
+Proyecto que consiste en aplicar una BBDD a nuestro proyecto de ollievanders. Para realizar la implementación de quarkus necesitamos crear una BBDD a nuestro programa y mapperarlo correctamente en nuestro código.
+
+En este proyecto se contemplan dos ramas: la develop dónde se usar una BBDD con varias tablas y por otra parte está otra rama llamada nuevaBase donde se usa una nueva BBDD con una única tabla.
+
+* Algunos casos test no pasan debido a que no sabía como realizarlos correctmente.
+
 # ollievanders-DAO
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
